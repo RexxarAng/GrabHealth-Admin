@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-12 col-sm-offset-2 col-md-offset-3">
+        <form role="form" (submit)="onRegister()">
+          <h2>Clinic Registration</h2>
+          <hr class="colorgraph">
+          <h4>Clinic Manager details</h4>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="first_name" [(ngModel)]="mFirstName" class="form-control input-lg" placeholder="First Name">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="last_name" [(ngModel)]="mLastName" class="form-control input-lg" placeholder="Last Name">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="nric" [(ngModel)]="mNric" class="form-control input-lg" placeholder="NRIC">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="doctor_license_no" [(ngModel)]="mDoctorLicenseNo" class="form-control input-lg" placeholder="Doctor License No">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="email" [(ngModel)]="mEmail" class="form-control input-lg" placeholder="Email">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="contact" [(ngModel)]="mContactNo" class="form-control input-lg" placeholder="Contact Number">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea name="manager_address" [(ngModel)]="mAddress" class="form-control input-lg" placeholder="Address"></textarea>
+          </div>
+          <!-- <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <span class="button-checkbox">
+                    <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                </span>
+               By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+            </div>
+          </div> -->      
+          <hr class="colorgraph">
+          <h4>Clinic details</h4>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="clinic_name" [(ngModel)]="cName" class="form-control input-lg" placeholder="Clinic Name">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="clinic_license_no" [(ngModel)]="cLicenseNo" class="form-control input-lg" placeholder="Clinic License No" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <input type="text" name="clinic_contact" [(ngModel)]="cContactNo" class="form-control input-lg" placeholder="Clinic Contact Number">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group">
+                <select class="form-control" name="clinic_location" id="clinic_location" [(ngModel)]="cLocation">
+                  <option value="North">North</option>
+                  <option value="Northeast">Northeast</option>
+                  <option value="East">East</option>
+                  <option value="Central">Central</option>
+                  <option value="West">West</option>
+                </select>              
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea name="clinic_address" [(ngModel)]="cAddress" class="form-control input-lg" placeholder="Clinic Address"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="clinic_photo">Clinic Photo: 
+              <input type="text" name="clinic_photo" id="clinic_photo" [(ngModel)]="cPhoto" class="form-control input-lg" placeholder="Clinic Photo">
+            </label>
+          </div>
+          <hr class="colorgraph">
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <input type="submit" value="Register" class="btn btn-primary btn-block btn-lg">
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
