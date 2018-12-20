@@ -8,9 +8,18 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AuthService } from './services/auth.service';
+import { ClinicListComponent } from './clinic-list/clinic-list.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminService } from './services/admin.service';
+import { AuthInterceptor } from './guards/auth.interceptor';
+export function tokenGetter() {
+  return sessionStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -18,7 +27,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     HomeComponent,
     RegistrationComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    ClinicListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +36,20 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['http://localhost:4560/'],
+        blacklistedRoutes: ['http://localhost:4560/authenticate']
+      }
+    })
   ],
-  providers: [ValidateService],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },ValidateService, AuthService, AuthGuard, AdminService, AuthInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

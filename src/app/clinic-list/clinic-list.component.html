@@ -1,0 +1,100 @@
+<div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <h3>Clinic List</h3>
+          </th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">
+            <button type="button" class="btn btn-img" name="registrationBtn" routerLink="/clinic/registration">
+              <img src="assets/img/addNew.png" class="logo" id="addNewClinic">
+            </button>
+          </th>
+          <th scope="col">
+            <!-- <form class="form-inline my-2 my-lg-0" name="searchForm"> -->
+              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <!-- </form> -->
+          </th>
+        </tr>
+      </thead>
+  
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Location</th>
+          <th scope="col">Contact Number</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clinic of clinics">
+          <td>{{ clinic.name }}</td>
+          <td>{{ clinic.address }}</td>
+          <td>{{ clinic.location }}</td>
+          <td>{{ clinic.contactNo }}</td>
+          <td>
+            <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewClinicDetailModal" (click)="viewClinicInfo(clinic)">
+              <img src="assets/img/view.png" class="logo" id="viewClinicDetail">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  <!--View Clinic Details Modal-->
+  <div>
+    <div class="modal fade" id="viewClinicDetailModal" tabindex="-1" role="dialog" aria-labelledby="viewClinicDetailModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewClinicDetailModalLabel">View Clinic Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+              <div class="row rowspacing">
+                <div class="col">
+                  <p *ngIf="clinic"><b>Name:</b> {{ clinic.name }}</p>
+                </div>
+                        
+                <div class="col">
+                  <p *ngIf="clinic"><b>License No:</b> {{ clinic.clinicLicenseNo }}</p>
+                </div>
+              </div>
+              <div class="row rowspacing">
+                <div class="col">
+                  <fieldset>
+                      <p *ngIf="clinic"><b>Contact No:</b> {{ clinic.contactNo }}</p>
+                    </fieldset>
+                </div>
+    
+                <div class="col">
+                  <p *ngIf="clinic"><b>Location:</b> {{ clinic.location }}</p>
+                </div>
+              </div>
+    
+              <div class="row rowspacing">
+                <div class="col">
+                  <p *ngIf="clinic"><b>Address:</b> {{ clinic.address }}</p>
+                </div>
+              </div> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

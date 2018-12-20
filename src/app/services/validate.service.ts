@@ -43,14 +43,11 @@ export class ValidateService {
   }
 
   validateClinicRegistration(user, clinic) {
-    if (user.firstName == undefined || user.lastName  == undefined || user.email == undefined || user.nric == undefined || user.contactNo == undefined || user.doctorLicenseNo == undefined || clinic.name == undefined || clinic.address == undefined || clinic.location == undefined || clinic.contactNo == undefined || clinic.clinicLicenseNo == undefined || clinic.clinicPhoto == undefined ){
-      return false
+    if (user.firstName.length == 0 || user.lastName.length == 0 || user.email.length == 0 || user.nric.length == 0 || user.contactNo.length == 0 || user.doctorLicenseNo.length == 0 || clinic.name.trim().length == 0 || clinic.address.length == 0 || clinic.location.length == 0 || clinic.contactNo.length == 0 || clinic.clinicLicenseNo.length == 0 || clinic.clinicPhoto.length == 0 ) {
+      return false;
     } else {
       return true;
     }
-    // if (user.firstname.trim().length == 0 || user.lastname.trim().length == 0 || user.email.trim().length == 0 || user.nric.trim().length == 0 || user.contactNo.trim().length == 0 || user.doctorLicenseNo.trim().length == 0 || clinic.name.trim().length == 0 || clinic.address.trim().length == 0 || clinic.location.trim().length == 0 || clinic.contactNo.trim().length == 0 || clinic.clinicLicenseNo.trim().length == 0 || clinic.clinicPhoto.trim().length == 0 ) {
-    //     return false;
-    //   } 
   }
 
   validateContactNo(contactNo){
@@ -69,6 +66,14 @@ export class ValidateService {
       } else {
           return false;
       }
+  }
+
+  validateLogin(credentials){
+    if(credentials.email == undefined || credentials.email.trim().length == 0 || credentials.password == undefined || credentials.password.trim().length == 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 
