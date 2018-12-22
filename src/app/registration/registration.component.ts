@@ -89,15 +89,20 @@ export class RegistrationComponent implements OnInit {
             return false;
         }
         if(!this.validateService.validateNric(manager.nric)){
-            this.flashMessagesService.show('Please enter a valid nric', { cssClass: 'alert-danger', timeout: 3000});
+            this.flashMessagesService.show('Please enter a valid nric capitalized', { cssClass: 'alert-danger', timeout: 3000});
             return false;
         }
         
         this.adminService.registerClinic(manager, clinic).subscribe(
             res => {
                 console.log(res);
-                this.flashMessagesService.show('You have successfully registered the clinic', { cssClass: 'alert-success', timeout: 3000});
-                this.router.navigateByUrl('/clinicList');
+                if(res['success']) {
+                    this.flashMessagesService.show('You have successfully registered the clinic', { cssClass: 'alert-success', timeout: 3000});
+                    this.router.navigateByUrl('/clinicList');
+                } else {
+                    this.flashMessagesService.show("Manager or Clinic already exists", { cssClass: 'alert-danger', timeout: 3000});
+                }
+                
             },
             err => {
                 console.log(err);
