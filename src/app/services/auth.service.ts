@@ -4,26 +4,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import 'rxjs/add/operator/map';
 
-
-interface ClinicInfo {
-    manager : {
-        firstName: string,
-        lastName: string,
-        nric: string,
-        address: string,
-        contactNo: number,
-        email: string,
-        doctorLicenseNo: string
-    },
-    clinic : {
-        name: string,
-        address: string,
-        location: string,
-        contactNo: number,
-        clinicLicenseNo: string,
-        clinicPhoto: string
-    }
-}
 @Injectable()
 export class AuthService {
     noAuthHeader = { headers: new HttpHeaders({"NoAuth": "true"}) };
@@ -35,7 +15,7 @@ export class AuthService {
 
 
     loginAdmin(credentials){
-        return this.http.post('http://localhost:4560/admin/authenticate', credentials, this.noAuthHeader);
+        return this.http.post('http://localhost:4560/admin/authenticate2FA', credentials, this.noAuthHeader);
     }
 
     getToken(){

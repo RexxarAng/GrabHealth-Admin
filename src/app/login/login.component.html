@@ -14,6 +14,11 @@
               <div class="form-group">
                   <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="Password">
               </div>
+              <img *ngIf="showDataUrl" src="{{ dataurl }}">
+              <p *ngIf="showDataUrl">Please use your google authenticator to scan to set up account</p>
+              <div *ngIf="showTokenField" class="form-group">
+                <input type="token" class="form-control" id="token" name="token" [(ngModel)]="token" placeholder="token">
+              </div>
               <button type="submit" class="btn btn-primary">Login</button>
           </form>
         </div>
