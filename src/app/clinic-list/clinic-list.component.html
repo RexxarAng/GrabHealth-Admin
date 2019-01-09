@@ -29,8 +29,8 @@
           <th scope="col">Address</th>
           <th scope="col">Location</th>
           <th scope="col">Contact Number</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
+          <th scope="col">View</th>
+          <th scope="col">Remove</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -44,6 +44,13 @@
             <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewClinicDetailModal" (click)="viewClinicInfo(clinic)">
               <img src="assets/img/view.png" class="logo" id="viewClinicDetail">
             </button>
+          </td>
+          <td>
+            <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Remove Clinic">
+              <button type="button" class="btn btn-img" data-toggle="modal" data-target="#removeClinicModal" (click)="removeClinic(clinic)">
+                <i class="fa fa-remove fa-2x" id="deleteClinic"></i>
+              </button>
+            </span>
           </td>
         </tr>
       </tbody>
@@ -98,3 +105,27 @@
       </div>
     </div>
   </div>
+
+
+  <!--Remove Clinic Modal-->
+<div>
+  <div class="modal fade" id="removeClinicModal" tabindex="-1" role="dialog" aria-labelledby="removeClinicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="removeClinicModalLabel">Remove Clinic</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to remove and delete this Clinic along with the clinic manager??</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="onRemoveClinic()" data-dismiss="modal">Remove Clinic</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

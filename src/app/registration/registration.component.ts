@@ -31,7 +31,8 @@ export class RegistrationComponent implements OnInit {
         private validateService: ValidateService,
         private flashMessagesService: FlashMessagesService,
         private adminService: AdminService,
-        private router: Router 
+        private router: Router,
+        private authService: AuthService
         ){ }
 
     ngOnInit() {
@@ -96,6 +97,9 @@ export class RegistrationComponent implements OnInit {
         this.adminService.registerClinic(manager, clinic).subscribe(
             res => {
                 console.log(res);
+                if(res['unauthenticated']){
+                    this.authService.logout();
+                }
                 if(res['success']) {
                     this.flashMessagesService.show('You have successfully registered the clinic', { cssClass: 'alert-success', timeout: 3000});
                     this.router.navigateByUrl('/clinicList');

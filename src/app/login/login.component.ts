@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginAdmin(credentials).subscribe(
       res => {
-        console.log(res);
         if(res['success']){
           if(res['setup']){
             this.dataurl = res['data'];
@@ -90,7 +89,6 @@ export class LoginComponent implements OnInit {
         this.showTokenField = false;
         this.showDataUrl = false;
         this.token = '';
-        console.log(err);
       }
     );
   }

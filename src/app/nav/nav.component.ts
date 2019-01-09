@@ -33,9 +33,7 @@ export class NavComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigateByUrl('/login');
-    this.authService.deleteToken();
-    
+    this.authService.logout()
   }
 
   
