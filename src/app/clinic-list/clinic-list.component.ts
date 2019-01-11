@@ -35,6 +35,7 @@ export class ClinicListComponent implements OnInit {
       }, 
       err=> {
         console.log(err);
+        this.authService.logout();
       });
   }
 
@@ -60,7 +61,7 @@ export class ClinicListComponent implements OnInit {
         }
       },
       err => {
-
+        this.authService.logout();
       }
     );
   }

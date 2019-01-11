@@ -28,8 +28,8 @@ export class AuthService {
     logout(){
         return this.http.post('http://localhost:4560/blacklistToken', "Nothing").subscribe(
             res=>{
-                this.router.navigateByUrl('/login');
                 this.deleteToken();
+                this.router.navigateByUrl('/login');
             });
     }
 
