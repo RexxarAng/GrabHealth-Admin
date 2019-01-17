@@ -26,11 +26,23 @@ export class AuthService {
     }
 
     logout(){
-        return this.http.post('http://localhost:4560/blacklistToken', "Nothing").subscribe(
-            res=>{
+        var userPayload = this.getUserPayload();
+        if (userPayload) {
+            if (!this.jwtHelper.isTokenExpired(userPayload)){
+                return this.http.post('http://localhost:4560/blacklistToken', "Nothing").subscribe(
+                    res=>{
+                        this.deleteToken();
+                        this.router.navigateByUrl('/login');
+                    });
+            } else {
                 this.deleteToken();
                 this.router.navigateByUrl('/login');
-            });
+            }
+        } else {
+            this.deleteToken();
+            return this.router.navigateByUrl('/login');
+        }
+
     }
 
     setToken(token: string){

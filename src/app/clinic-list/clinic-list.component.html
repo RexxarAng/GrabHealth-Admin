@@ -70,7 +70,7 @@
             </button>
           </div>
           
-          <div class="modal-body">
+          <div class="modal-body" *ngIf="clinic">
               <div class="row rowspacing">
                 <div class="col">
                   <p *ngIf="clinic"><b>Name:</b> {{ clinic.name }}</p>
@@ -96,7 +96,34 @@
                 <div class="col">
                   <p *ngIf="clinic"><b>Address:</b> {{ clinic.address }}</p>
                 </div>
-              </div> 
+              </div>
+              
+              <table class="table">
+                <thead>
+                  <th>Clinic Team</th>
+                </thead>
+  
+                <tbody>
+                  <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>NRIC</td>
+                    <td>Address</td>
+                    <td>Contact No</td>
+                    <td>Role</td>
+                  </tr>
+  
+                  <tr>
+                    <td>{{ clinic.clinicManager.firstName }}</td>
+                    <td>{{ clinic.clinicManager.lastName }}</td>
+                    <td>{{ clinic.clinicManager.nric }}</td>
+                    <td>{{ clinic.clinicManager.address }}</td>
+                    <td>{{ clinic.clinicManager.contactNo }}</td>
+                    <td>{{ clinic.clinicManager.role }}</td>
+                  </tr>
+                </tbody>
+                
+              </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
