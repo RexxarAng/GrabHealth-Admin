@@ -16,8 +16,8 @@
           </th>
           <th scope="col">
             <!-- <form class="form-inline my-2 my-lg-0" name="searchForm"> -->
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+              <input  [(ngModel)]="searchClinic" name="searchClinic" class="form-control mr-sm-2" type="text" placeholder="Search">
+              <!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
             <!-- </form> -->
           </th>
         </tr>
@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let clinic of clinics">
+        <tr *ngFor="let clinic of clinics | grdFilter: {name: searchClinic}">
           <td>{{ clinic.name }}</td>
           <td>{{ clinic.address }}</td>
           <td>{{ clinic.location }}</td>
@@ -61,7 +61,7 @@
   <!--View Clinic Details Modal-->
   <div>
     <div class="modal fade" id="viewClinicDetailModal" tabindex="-1" role="dialog" aria-labelledby="viewClinicDetailModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="viewClinicDetailModalLabel">View Clinic Details</h5>
@@ -100,7 +100,11 @@
               
               <table class="table">
                 <thead>
-                  <th>Clinic Team</th>
+                  <th></th>
+                  <th></th>
+                  <th colspan="2">Clinic Team</th>
+                  <th></th>
+                  <th></th>
                 </thead>
   
                 <tbody>
@@ -120,6 +124,22 @@
                     <td>{{ clinic.clinicManager.address }}</td>
                     <td>{{ clinic.clinicManager.contactNo }}</td>
                     <td>{{ clinic.clinicManager.role }}</td>
+                  </tr>
+                  <tr *ngFor="let receptionist of clinic.receptionists">
+                    <td>{{ receptionist.firstName }}</td>
+                    <td>{{ receptionist.lastName }}</td>
+                    <td>{{ receptionist.nric }}</td>
+                    <td>{{ receptionist.address }}</td>
+                    <td>{{ receptionist.contactNo }}</td>
+                    <td>{{ receptionist.role }}</td>
+                  </tr>
+                  <tr *ngFor="let doctor of clinic.doctors">
+                      <td>{{ doctor.firstName }}</td>
+                      <td>{{ doctor.lastName }}</td>
+                      <td>{{ doctor.nric }}</td>
+                      <td>{{ doctor.address }}</td>
+                      <td>{{ doctor.contactNo }}</td>
+                      <td>{{ doctor.role }}</td>
                   </tr>
                 </tbody>
                 

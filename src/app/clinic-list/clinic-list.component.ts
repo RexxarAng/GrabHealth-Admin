@@ -9,7 +9,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./clinic-list.component.scss']
 })
 export class ClinicListComponent implements OnInit {
-
+  searchClinic: string;
   clinic:any;
   clinics:Array<any>;
   constructor(
@@ -32,6 +32,7 @@ export class ClinicListComponent implements OnInit {
           this.authService.logout();
         }
         this.clinics = res['clinics'];
+        console.log(this.clinics);
       }, 
       err=> {
         console.log(err);

@@ -17,6 +17,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminService } from './services/admin.service';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { GrdFilterPipe } from './grd-filter.pipe';
+
 export function tokenGetter() {
   return sessionStorage.getItem('access_token');
 }
@@ -28,7 +30,8 @@ export function tokenGetter() {
     RegistrationComponent,
     LoginComponent,
     NavComponent,
-    ClinicListComponent
+    ClinicListComponent,
+    GrdFilterPipe
   ],
   imports: [
     BrowserModule,
