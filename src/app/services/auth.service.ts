@@ -4,10 +4,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from "@angular/router";
 import { FlashMessagesService } from 'angular2-flash-messages';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
     noAuthHeader = { headers: new HttpHeaders({"NoAuth": "true"}) };
+    url = environment.url;
 
     constructor(
         private http: HttpClient,
@@ -18,7 +20,7 @@ export class AuthService {
 
 
     loginAdmin(credentials){
-        return this.http.post('http://localhost:4560/admin/authenticate2FA', credentials, this.noAuthHeader);
+        return this.http.post(this.url + '/admin/authenticate2FA', credentials, this.noAuthHeader);
     }
 
     getToken(){
@@ -29,7 +31,7 @@ export class AuthService {
         var userPayload = this.getUserPayload();
         if (userPayload) {
             if (!this.jwtHelper.isTokenExpired(userPayload)){
-                return this.http.post('http://localhost:4560/blacklistToken', "Nothing").subscribe(
+                return this.http.post(this.url + '/blacklistToken', "Nothing").subscribe(
                     res=>{
                         this.deleteToken();
                         this.router.navigateByUrl('/login');

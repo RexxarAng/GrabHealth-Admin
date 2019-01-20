@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   menuDisplay: boolean;
   constructor(
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     ) { }
 
   ngOnInit() {
