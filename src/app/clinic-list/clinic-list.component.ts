@@ -42,6 +42,7 @@ export class ClinicListComponent implements OnInit {
 
   viewClinicInfo(clinic){
     this.clinic = clinic;
+
   }
 
   removeClinic(clinic){

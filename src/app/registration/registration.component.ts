@@ -51,7 +51,6 @@ export class RegistrationComponent implements OnInit {
     this.cLocation = '';
     this.cContactNo = '';
     this.cLicenseNo = '';
-    this.cPhoto = '';
     }
 
     onRegister(){
@@ -69,8 +68,7 @@ export class RegistrationComponent implements OnInit {
             address: this.cAddress.trim(),
             location: this.cLocation.trim(),
             contactNo: this.cContactNo.trim(),
-            clinicLicenseNo: this.cLicenseNo.trim(),
-            clinicPhoto: this.cPhoto.trim()
+            clinicLicenseNo: this.cLicenseNo.trim()
         }
 
         // Required fields

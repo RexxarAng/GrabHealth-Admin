@@ -43,7 +43,7 @@ export class ValidateService {
   }
 
   validateClinicRegistration(user, clinic) {
-    if (user.firstName.length == 0 || user.lastName.length == 0 || user.email.length == 0 || user.nric.length == 0 || user.contactNo.length == 0 || user.doctorLicenseNo.length == 0 || clinic.name.trim().length == 0 || clinic.address.length == 0 || clinic.location.length == 0 || clinic.contactNo.length == 0 || clinic.clinicLicenseNo.length == 0 || clinic.clinicPhoto.length == 0 ) {
+    if (user.firstName.length == 0 || user.lastName.length == 0 || user.email.length == 0 || user.nric.length == 0 || user.contactNo.length == 0 || user.doctorLicenseNo.length == 0 || clinic.name.trim().length == 0 || clinic.address.length == 0 || clinic.location.length == 0 || clinic.contactNo.length == 0 || clinic.clinicLicenseNo.length == 0 ) {
       return false;
     } else {
       return true;
