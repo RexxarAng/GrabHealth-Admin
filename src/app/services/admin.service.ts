@@ -23,6 +23,13 @@ export class AdminService {
     removeClinic(clinic){
         return this.http.post(this.url + '/admin/clinic/remove', clinic);
     }
-  
+    
+    getPatients(){
+        return this.http.get(this.url + '/admin/patientList');
+    }
+    
+    removePatient(patient){
+        return this.http.post(this.url + '/admin/patient/remove', patient);
+    }
 
 }

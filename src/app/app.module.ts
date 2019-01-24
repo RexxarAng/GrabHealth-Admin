@@ -18,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminService } from './services/admin.service';
 import { AuthInterceptor } from './guards/auth.interceptor';
 import { GrdFilterPipe } from './grd-filter.pipe';
+import { PatientListComponent } from './patient-list/patient-list.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem('access_token');
@@ -31,7 +32,8 @@ export function tokenGetter() {
     LoginComponent,
     NavComponent,
     ClinicListComponent,
-    GrdFilterPipe
+    GrdFilterPipe,
+    PatientListComponent
   ],
   imports: [
     BrowserModule,

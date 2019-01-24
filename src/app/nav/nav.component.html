@@ -11,7 +11,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" *ngIf="authService.loggedIn()" routerLink="/clinicList" routerLinkActive="active">View Clinics</a>
-            <a class="dropdown-item" *ngIf="authService.loggedIn()" routerLink="#" routerLinkActive="active">View Patients</a>
+            <a class="dropdown-item" *ngIf="authService.loggedIn()" routerLink="/patientList" routerLinkActive="active">View Patients</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" *ngIf="authService.loggedIn()" routerLink="clinic/registration" routerLinkActive="active">Clinic Registration</a>
         </div>

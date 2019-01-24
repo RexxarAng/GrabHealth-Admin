@@ -1,0 +1,186 @@
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <h3>Patient List</h3>
+        </th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">
+        <input [(ngModel)]="nricSearch" class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </th>
+      </tr>
+    </thead>
+
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" class="colspacing">First Name</th>
+        <th scope="col" class="colspacing">Last Name</th>
+        <th scope="col" class="colspacing">NRIC/Passport No.</th>
+        <th scope="col" class="colspacing">Contact No.</th>
+        <th scope="col" class="colspacing"></th>
+        <th scope="col" class="colspacing"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let patient of patients | grdFilter: {nric: nricSearch}">
+        <td class="colspacing">{{ patient.firstName }}</td>
+        <td class="colspacing">{{ patient.lastName }}</td>
+        <td class="colspacing">{{ patient.nric }}</td>
+        <td class="colspacing">{{ patient.contactNo }}</td>
+        <td class="colspacing">
+          <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="View Patient Details">
+            <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewPatientDetailModal" (click)="viewPatientInfo(patient)">
+              <i class="fa fa-eye fa-2x" id="viewPatientDetail"></i>
+            </button>
+          </span>
+        </td>
+        <td class="colspacing">
+          <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Remove patient">
+            <button type="button" class="btn btn-img" data-toggle="modal" data-target="#removePatientModal" (click)="removePatient(patient)">
+              <i class="fa fa-remove fa-2x" id="removePatient"></i>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--View Patient Details Modal-->
+<div>
+  <div class="modal fade" id="viewPatientDetailModal" tabindex="-1" role="dialog" aria-labelledby="viewPatientDetailModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewPatientDetailModalLabel">View Patient Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body" *ngIf="patient">
+          <form>
+            <div class="row rowspacing">
+              <div class="col">
+                <label><b>First Name:</b></label>
+                <p>{{ patient.firstName }}</p>
+              </div>
+                      
+              <div class="col">
+                <label><b>Last Name:</b></label>
+                <p>{{ patient.lastName }}</p>
+              </div>
+            </div>
+  
+            <div class="row rowspacing">
+              <div class="col">
+                <label><b>NRIC/ Passport No.:</b></label>
+                <p>{{ patient.nric }}</p>
+              </div>
+  
+              <div class="col">
+                <label><b>Nationality:</b></label>
+                <p>{{ patient.nationality }}</p>
+              </div>
+            </div>
+  
+            <div class="row rowspacing">
+              <div class="col">                
+                <label><b>Gender:</b></label>
+                <p>{{ patient.gender }}</p>
+              </div>
+
+              <div class="col">
+                <label><b>D.O.B:</b></label>
+                <p>{{ patient.dob | date: 'dd/MM/yyyy' }}</p>
+              </div>
+            </div>
+
+            <div class="row rowspacing">
+              <div class="col">                
+                <label><b>Email:</b></label>
+                <p>{{ patient.email }}</p>
+              </div>
+
+              <div class="col">
+                <label><b>Contact No:</b></label>
+                <p>{{ patient.contactNo }}</p>
+              </div>
+            </div>
+
+            <div class="row rowspacing">
+              <div class="col">
+                <label><b>Address:</b></label>
+                <p>{{ patient.address }}</p>
+              </div>
+            </div> 
+    
+
+            <table class="table">
+              <thead>
+                <th>Payment History</th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Receipt No.</td>
+                  <td>Date</td>
+                  <td>Time</td>
+                  <td>Total Due</td>
+                  <td><img src="assets/img/view.png" class="logo"></td>
+                </tr>
+
+                <tr>
+                  <td>#123</td>
+                  <td>20/12/2018</td>
+                  <td>14:58</td>
+                  <td>$30.50</td>
+                  <td>
+                    <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewPaymentDetail">
+                      <img src="assets/img/view.png" class="logo" id="viewPayment">
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              
+            </table>
+  
+          </form>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Remove Clinic Modal-->
+<div>
+    <div class="modal fade" id="removePatientModal" tabindex="-1" role="dialog" aria-labelledby="removePatientModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="removePatientModalLabel">Remove Patient</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to remove and delete this patient??</p>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="onRemovePatient()" data-dismiss="modal">Remove Patient</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

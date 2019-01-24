@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ClinicListComponent } from './clinic-list/clinic-list.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'clinic/registration' , component: RegistrationComponent, canActivate:[AuthGuard]},
-  { path: 'clinicList', component: ClinicListComponent, canActivate:[AuthGuard]}
+  { path: 'clinicList', component: ClinicListComponent, canActivate:[AuthGuard]},
+  { path: 'patientList', component: PatientListComponent, canActivate:[AuthGuard]}
+
 ];
 
 @NgModule({

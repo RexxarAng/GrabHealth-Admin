@@ -1,160 +1,160 @@
 <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">
-            <h3>Clinic List</h3>
-          </th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col">
-            <button type="button" class="btn btn-img" name="registrationBtn" routerLink="/clinic/registration">
-              <img src="assets/img/addNew.png" class="logo" id="addNewClinic">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <h3>Clinic List</h3>
+        </th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">
+          <button type="button" class="btn btn-img" name="registrationBtn" routerLink="/clinic/registration">
+            <img src="assets/img/addNew.png" class="logo" id="addNewClinic">
+          </button>
+        </th>
+        <th scope="col">
+          <!-- <form class="form-inline my-2 my-lg-0" name="searchForm"> -->
+            <input  [(ngModel)]="searchClinic" name="searchClinic" class="form-control mr-sm-2" type="text" placeholder="Search">
+            <!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
+          <!-- </form> -->
+        </th>
+      </tr>
+    </thead>
+
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Location</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">View</th>
+        <th scope="col">Remove</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let clinic of clinics | grdFilter: {name: searchClinic}">
+        <td>{{ clinic.name }}</td>
+        <td>{{ clinic.address }}</td>
+        <td>{{ clinic.location }}</td>
+        <td>{{ clinic.contactNo }}</td>
+        <td>
+          <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewClinicDetailModal" (click)="viewClinicInfo(clinic)">
+            <img src="assets/img/view.png" class="logo" id="viewClinicDetail">
+          </button>
+        </td>
+        <td>
+          <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Remove Clinic">
+            <button type="button" class="btn btn-img" data-toggle="modal" data-target="#removeClinicModal" (click)="removeClinic(clinic)">
+              <i class="fa fa-remove fa-2x" id="deleteClinic"></i>
             </button>
-          </th>
-          <th scope="col">
-            <!-- <form class="form-inline my-2 my-lg-0" name="searchForm"> -->
-              <input  [(ngModel)]="searchClinic" name="searchClinic" class="form-control mr-sm-2" type="text" placeholder="Search">
-              <!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
-            <!-- </form> -->
-          </th>
-        </tr>
-      </thead>
-  
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Address</th>
-          <th scope="col">Location</th>
-          <th scope="col">Contact Number</th>
-          <th scope="col">View</th>
-          <th scope="col">Remove</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let clinic of clinics | grdFilter: {name: searchClinic}">
-          <td>{{ clinic.name }}</td>
-          <td>{{ clinic.address }}</td>
-          <td>{{ clinic.location }}</td>
-          <td>{{ clinic.contactNo }}</td>
-          <td>
-            <button type="button" class="btn btn-img" data-toggle="modal" data-target="#viewClinicDetailModal" (click)="viewClinicInfo(clinic)">
-              <img src="assets/img/view.png" class="logo" id="viewClinicDetail">
-            </button>
-          </td>
-          <td>
-            <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Remove Clinic">
-              <button type="button" class="btn btn-img" data-toggle="modal" data-target="#removeClinicModal" (click)="removeClinic(clinic)">
-                <i class="fa fa-remove fa-2x" id="deleteClinic"></i>
-              </button>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   
   
-  <!--View Clinic Details Modal-->
-  <div>
-    <div class="modal fade" id="viewClinicDetailModal" tabindex="-1" role="dialog" aria-labelledby="viewClinicDetailModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="viewClinicDetailModalLabel">View Clinic Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          
-          <div class="modal-body" *ngIf="clinic">
-              <div class="row rowspacing">
-                <div class="col">
-                  <p *ngIf="clinic"><b>Name:</b> {{ clinic.name }}</p>
-                </div>
-                        
-                <div class="col">
-                  <p *ngIf="clinic"><b>License No:</b> {{ clinic.clinicLicenseNo }}</p>
-                </div>
+<!--View Clinic Details Modal-->
+<div>
+  <div class="modal fade" id="viewClinicDetailModal" tabindex="-1" role="dialog" aria-labelledby="viewClinicDetailModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewClinicDetailModalLabel">View Clinic Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body" *ngIf="clinic">
+            <div class="row rowspacing">
+              <div class="col">
+                <p *ngIf="clinic"><b>Name:</b> {{ clinic.name }}</p>
               </div>
-              <div class="row rowspacing">
-                <div class="col">
-                  <fieldset>
-                      <p *ngIf="clinic"><b>Contact No:</b> {{ clinic.contactNo }}</p>
-                    </fieldset>
-                </div>
-    
-                <div class="col">
-                  <p *ngIf="clinic"><b>Location:</b> {{ clinic.location }}</p>
-                </div>
+                      
+              <div class="col">
+                <p *ngIf="clinic"><b>License No:</b> {{ clinic.clinicLicenseNo }}</p>
               </div>
-    
-              <div class="row rowspacing">
-                <div class="col">
-                  <p *ngIf="clinic"><b>Address:</b> {{ clinic.address }}</p>
-                </div>
+            </div>
+            <div class="row rowspacing">
+              <div class="col">
+                <fieldset>
+                    <p *ngIf="clinic"><b>Contact No:</b> {{ clinic.contactNo }}</p>
+                  </fieldset>
               </div>
+  
+              <div class="col">
+                <p *ngIf="clinic"><b>Location:</b> {{ clinic.location }}</p>
+              </div>
+            </div>
+  
+            <div class="row rowspacing">
+              <div class="col">
+                <p *ngIf="clinic"><b>Address:</b> {{ clinic.address }}</p>
+              </div>
+            </div>
+            
+            <table class="table">
+              <thead>
+                <th></th>
+                <th></th>
+                <th colspan="2">Clinic Team</th>
+                <th></th>
+                <th></th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>First Name</td>
+                  <td>Last Name</td>
+                  <td>NRIC</td>
+                  <td>Address</td>
+                  <td>Contact No</td>
+                  <td>Role</td>
+                </tr>
+
+                <tr>
+                  <td>{{ clinic.clinicManager.firstName }}</td>
+                  <td>{{ clinic.clinicManager.lastName }}</td>
+                  <td>{{ clinic.clinicManager.nric }}</td>
+                  <td>{{ clinic.clinicManager.address }}</td>
+                  <td>{{ clinic.clinicManager.contactNo }}</td>
+                  <td>{{ clinic.clinicManager.role }}</td>
+                </tr>
+                <tr *ngFor="let receptionist of clinic.receptionists">
+                  <td>{{ receptionist.firstName }}</td>
+                  <td>{{ receptionist.lastName }}</td>
+                  <td>{{ receptionist.nric }}</td>
+                  <td>{{ receptionist.address }}</td>
+                  <td>{{ receptionist.contactNo }}</td>
+                  <td>{{ receptionist.role }}</td>
+                </tr>
+                <tr *ngFor="let doctor of clinic.doctors">
+                    <td>{{ doctor.firstName }}</td>
+                    <td>{{ doctor.lastName }}</td>
+                    <td>{{ doctor.nric }}</td>
+                    <td>{{ doctor.address }}</td>
+                    <td>{{ doctor.contactNo }}</td>
+                    <td>{{ doctor.role }}</td>
+                </tr>
+              </tbody>
               
-              <table class="table">
-                <thead>
-                  <th></th>
-                  <th></th>
-                  <th colspan="2">Clinic Team</th>
-                  <th></th>
-                  <th></th>
-                </thead>
-  
-                <tbody>
-                  <tr>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>NRIC</td>
-                    <td>Address</td>
-                    <td>Contact No</td>
-                    <td>Role</td>
-                  </tr>
-  
-                  <tr>
-                    <td>{{ clinic.clinicManager.firstName }}</td>
-                    <td>{{ clinic.clinicManager.lastName }}</td>
-                    <td>{{ clinic.clinicManager.nric }}</td>
-                    <td>{{ clinic.clinicManager.address }}</td>
-                    <td>{{ clinic.clinicManager.contactNo }}</td>
-                    <td>{{ clinic.clinicManager.role }}</td>
-                  </tr>
-                  <tr *ngFor="let receptionist of clinic.receptionists">
-                    <td>{{ receptionist.firstName }}</td>
-                    <td>{{ receptionist.lastName }}</td>
-                    <td>{{ receptionist.nric }}</td>
-                    <td>{{ receptionist.address }}</td>
-                    <td>{{ receptionist.contactNo }}</td>
-                    <td>{{ receptionist.role }}</td>
-                  </tr>
-                  <tr *ngFor="let doctor of clinic.doctors">
-                      <td>{{ doctor.firstName }}</td>
-                      <td>{{ doctor.lastName }}</td>
-                      <td>{{ doctor.nric }}</td>
-                      <td>{{ doctor.address }}</td>
-                      <td>{{ doctor.contactNo }}</td>
-                      <td>{{ doctor.role }}</td>
-                  </tr>
-                </tbody>
-                
-              </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 
-  <!--Remove Clinic Modal-->
+<!--Remove Clinic Modal-->
 <div>
   <div class="modal fade" id="removeClinicModal" tabindex="-1" role="dialog" aria-labelledby="removeClinicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
